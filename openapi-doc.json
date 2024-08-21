@@ -1,0 +1,267 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "E-Wallet",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "apikeyAuth": {
+          "type": "http",
+          "scheme": "apikey"
+        }
+      }
+    },
+    "paths": {
+      "/": {
+        "get": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Check Healt",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/create_user": {
+        "post": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Create User",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "userName": "User-A",
+                    "password": "Password-A",
+                    "fullName": "FullName-A"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Login (Get JWT)",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "userName": "User-A",
+                    "password": "Password-A"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/balance_read": {
+        "get": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Balance Read",
+          "security": [
+            {
+              "apikeyAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/top_users": {
+        "get": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Top Users Transfer By Value",
+          "security": [
+            {
+              "apikeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTczOTAzNTAsIm5hbWUiOiJGdWxsTmFtZS1BIiwidXNlcm5hbWUiOiJVc2VyLUEifQ.J3u4gZ59C_2I8HBnHsVBsZAQrRluJoDSipr6H4xxxX8"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/top_transaction_per_user": {
+        "get": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Top User TransactionPer User",
+          "security": [
+            {
+              "apikeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTczOTA4NzYsIm5hbWUiOiJGdWxsTmFtZS1BIiwidXNlcm5hbWUiOiJVc2VyLUEifQ.-1o9H7mb783lOiArqwogN9QcWhmO8jBRYsLx-cU77w8"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/transfer": {
+        "post": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Transfer",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "to_username": "User-B",
+                    "amount": 100
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "apikeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTczNzg3NjksIm5hbWUiOiJGdWxsTmFtZS1BIiwidXNlcm5hbWUiOiJVc2VyLUEifQ.J8Ke2n6LxVPgaQQZe0e29Yp3qBx9L2OiJka8_iKQ6wo"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/balance_topup": {
+        "post": {
+          "tags": [
+            "default"
+          ],
+          "summary": "Balance Topup",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "amount": 100
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "apikeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTczNzg3NjksIm5hbWUiOiJGdWxsTmFtZS1BIiwidXNlcm5hbWUiOiJVc2VyLUEifQ.J8Ke2n6LxVPgaQQZe0e29Yp3qBx9L2OiJka8_iKQ6wo"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
